@@ -1,0 +1,217 @@
+---
+title: "Task1"
+author: "Lucia Bušová"
+date: "27/10/2025"
+format:
+  html:
+    embed-resources: true
+editor: source
+---
+
+## Question 1 - atomic types
+
+
+Question description
+
+```{r}
+# code for solving task
+#numeric
+population <- 850000
+size <- 320 
+temperature <- 25
+rating <- 5
+# ineger
+number_of_moons <- 2
+buildings <- 4572
+inhabitants <- 850000
+# logical
+has_water <- TRUE
+has_air <- TRUE
+# character
+name <- "Lumeria"
+region <- "emerald_valley_region"
+category <- "Nature_oasis_city"
+
+
+```
+
+## Question 2 Vectors
+
+Question description
+
+```{r}
+# code for solving task
+#numeric vector
+num_vector <- c(population,size,temperature,rating,number_of_moons, buildings,inhabitants)
+
+#sequence vector
+s_vector <- seq(from = 20, to = 100, by =10)
+
+#logical vector
+l_vector <- sample(c(TRUE,FALSE),size=10, replace = TRUE)
+```
+
+## Question 3 Matrix
+
+Question description
+
+```{r}
+# code for solving task
+x <- sample(-50:50, 9, replace = TRUE)
+m <- matrix(x, nrow = 3, ncol = 3)
+rownames(m) <- c("A1","A2","A3")
+colnames(m) <- c("B1","B2","B3")
+
+row_means <- rowMeans(m)
+col_means <- colMeans(m)
+
+```
+
+## Question 4 List
+
+Question description
+
+```{r}
+# code for solving task
+T_list <- list(population=population,
+               size=size,
+               temperature=temperature,
+               rating=rating,
+               number_of_moons=number_of_moons,
+               buildings=buildings,
+               inhabitants=inhabitants,
+               
+               s_vector=s_vector <- seq(from = 15, to = 100, by =5),
+               l_vector=l_vector <- sample(c(TRUE,FALSE),size=10, replace = TRUE),
+               m=m,
+               T_descript = 'Lumeria - oáza pokoja, v prírodnom prostredí')
+
+```
+
+
+## Question 5 Factor
+
+Question description
+
+```{r}
+# code for solving task
+development_level <- factor(c('very low','low', 'medium','high','very high'), levels = c('very low','low', 'medium','high','very high'))
+
+table(development_level)
+```
+
+## Question 6 Data frame
+
+Question description
+
+```{r}
+# code for solving task
+cities_data <- data.frame(
+  cities = c('Lumeria', 'Bratislava', 'Nitra', 'Trnava', 'Trenčín', 'Košice'),
+  population = c(850000, 478040, 76426, 62880, 54107, 225044),
+  size = c(320, 368, 100, 72, 82, 243),
+  has_water= c(TRUE, TRUE, TRUE, TRUE, TRUE, TRUE)
+)
+
+colnames(cities_data) <- c('City', 'Population', 'size', 'has_water')
+
+str(cities_data)
+summary(cities_data)
+
+cities_data$Density <- cities_data$Population / cities_data$size
+
+cities_data
+
+```
+title: TASK 2 - Subsetting & Missing Data
+author: "Lucia Bušová"
+date: "9/11/2025"
+
+### 2.1. Querying Vectors
+
+```{r}
+# code for solving task
+# 2.1.1. Sequence vector
+# 3th element
+third_el <- s_vector[3]
+third_el
+
+# 2 to 5
+two_five <- s_vector[2:5]
+two_five
+
+#greater than 20
+greater_20 <- s_vector[s_vector > 20]
+greater_20
+
+# 2.1.2. Logical vector
+# true values
+true_vl <- l_vector[l_vector]
+true_vl
+
+# index
+true_pst <- which(l_vector)
+true_pst
+```
+
+### 2.2 Querying Your "Lumeria" List
+```{r}
+# code for solving task
+# Using the `$` operator
+T_list$T_descript
+
+# matrix [[]]
+T_list[['m']]
+
+# second element
+T_list[["s_vector"]][2]
+
+```
+
+### 2.3. Investigating Your Data Frame
+```{r}
+# code for solving task
+# first 3 rows
+head(cities_data, 3)
+
+# 4th row, 1st column
+cities_data[4, 1]
+
+# contains logical value
+cities_data$has_water
+```
+
+### 2.4. Handling "Corrupted" Data (`NA`)
+```{r}
+# code for solving task
+#copying data
+df_corrupted <- cities_data
+#NA
+df_corrupted[2, "size"] <- NA
+df_corrupted[5, "Population"] <- NA
+df_corrupted[6, "has_water"] <- NA
+#count NA
+sum(is.na(df_corrupted))
+#count column NA
+colSums(is.na(df_corrupted))
+#mean of population with NA
+mean(df_corrupted$Population)
+#mean of population without NA
+mean(df_corrupted$Population, na.rm = TRUE)
+#remove NA
+df_clean <- na.omit(df_corrupted)
+df_clean
+```
+
+### 2.5. Bonus Challenge which
+```{r}
+# code for solving task
+#highest population
+highest_pop_index <- which.max(cities_data$Population)
+cities_data[highest_pop_index, ]
+#lowest density
+lowest_density_index <- which.min(cities_data$Density)
+cities_data[lowest_density_index, ]
+```
+
+

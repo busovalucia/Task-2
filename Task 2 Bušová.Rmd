@@ -1,0 +1,91 @@
+---
+title: "Task 2"
+author: "BusovaLucia"
+date: "2025-12-15"
+output: html_document
+---
+```{r}
+### 2.1. Querying Vectors
+# code for solving task
+# 2.1.1. Sequence vector
+# 3th element
+third_el <- s_vector[3]
+third_el
+
+# 2 to 5
+two_five <- s_vector[2:5]
+two_five
+
+#greater than 20
+greater_20 <- s_vector[s_vector > 20]
+greater_20
+
+# 2.1.2. Logical vector
+# true values
+true_vl <- l_vector[l_vector]
+true_vl
+
+# index
+true_pst <- which(l_vector)
+true_pst
+```
+```{r}
+### 2.2 Querying Your "Lumeria" List
+# code for solving task
+# Using the `$` operator
+T_list$T_descript
+
+# matrix [[]]
+T_list[['m']]
+
+# second element
+T_list[["s_vector"]][2]
+```
+```{r}
+### 2.3. Investigating Your Data Frame
+# code for solving task
+# first 3 rows
+head(cities_data, 3)
+
+# 4th row, 1st column
+cities_data[4, 1]
+
+# contains logical value
+cities_data$has_water
+```
+```{r}
+### 2.4. Handling "Corrupted" Data (`NA`)
+# code for solving task
+#copying data
+df_corrupted <- cities_data
+#NA
+df_corrupted[2, "size"] <- NA
+df_corrupted[5, "Population"] <- NA
+df_corrupted[6, "has_water"] <- NA
+#count NA
+sum(is.na(df_corrupted))
+#count column NA
+colSums(is.na(df_corrupted))
+#mean of population with NA
+mean(df_corrupted$Population)
+#mean of population without NA
+mean(df_corrupted$Population, na.rm = TRUE)
+#remove NA
+df_clean <- na.omit(df_corrupted)
+df_clean
+```
+```{r}
+### 2.5. Bonus Challenge which
+# code for solving task
+#highest population
+highest_pop_index <- which.max(cities_data$Population)
+cities_data[highest_pop_index, ]
+#lowest density
+lowest_density_index <- which.min(cities_data$Density)
+cities_data[lowest_density_index, ]
+```
+
+
+
+
+
